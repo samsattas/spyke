@@ -1,20 +1,33 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# SPYKE
 
-# Run and deploy your AI Studio app
+Juego de deducción social para grupos. Cada ronda, todos los jugadores reciben la misma palabra secreta… excepto el espía, que recibe una palabra diferente pero relacionada. Los jugadores se turnan dando pistas, intentando demostrar que conocen la palabra sin revelarla — mientras el espía trata de pasar desapercibido.
 
-This contains everything you need to run your app locally.
+Al final de la ronda, el grupo vota quién creen que es el espía. Si aciertan, gana el equipo. Si se equivocan, gana el espía.
 
-View your app in AI Studio: https://ai.studio/apps/2a91981d-dce7-4984-9efb-6961de3b22e1
+## Roles
 
-## Run Locally
+- **Inocente** — conoce la palabra del equipo. Da pistas sin delatarse.
+- **Espía** — tiene una palabra distinta. Debe deducir la del equipo y no ser descubierto.
+- **Impostor** *(opcional)* — no tiene ninguna palabra. Si logra adivinar la palabra del equipo antes de ser eliminado, gana.
 
-**Prerequisites:**  Node.js
+## Cómo jugar
 
+1. Configura la partida: número de jugadores, espías e impostores.
+2. Cada jugador ve su rol y palabra en privado, pasando el dispositivo.
+3. Por turnos, cada jugador da una pista de una sola palabra.
+4. Al terminar la ronda, el grupo debate y vota a quién eliminar.
+5. Se repite hasta que alguien gane.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Stack
+
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion (animaciones)
+
+## Correr localmente
+
+```bash
+npm install
+npm run dev
+```
