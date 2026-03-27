@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useGameState } from '../hooks/useGameState';
 import { Button } from '../components/ui/button';
-import { Trophy, RotateCcw, Plus, User, Shield, UserSearch } from 'lucide-react';
+import { Trophy, RotateCcw, Plus, User, Shield } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 export const Result: React.FC = () => {
@@ -50,7 +50,22 @@ export const Result: React.FC = () => {
         return {
           title: '¡EL IMPOSTOR HA GANADO!',
           color: 'text-role-impostor',
-          icon: <UserSearch className="w-24 h-24 text-role-impostor" />,
+          icon: (
+            <svg viewBox="0 0 100 100" className="w-24 h-24 text-role-impostor" fill="currentColor">
+              {/* Hat crown */}
+              <rect x="28" y="4" width="44" height="28" rx="6" />
+              {/* Hat brim */}
+              <rect x="6" y="28" width="88" height="10" rx="5" />
+              {/* Glasses - left lens */}
+              <circle cx="34" cy="58" r="14" fill="none" stroke="currentColor" strokeWidth="7" />
+              {/* Glasses - right lens */}
+              <circle cx="66" cy="58" r="14" fill="none" stroke="currentColor" strokeWidth="7" />
+              {/* Glasses bridge */}
+              <line x1="48" y1="58" x2="52" y2="58" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+              {/* Body silhouette */}
+              <path d="M18 82 Q12 100 50 100 Q88 100 82 82 Q66 74 50 74 Q34 74 18 82 Z" />
+            </svg>
+          ),
           bg: 'bg-role-impostor/10'
         };
       default:

@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Users, User, UserSearch, ArrowRight } from 'lucide-react';
+import { Users, User, ArrowRight } from 'lucide-react';
+
+const IncognitoIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="currentColor">
+    <rect x="28" y="4" width="44" height="28" rx="6" />
+    <rect x="6" y="28" width="88" height="10" rx="5" />
+    <circle cx="34" cy="58" r="14" fill="none" stroke="currentColor" strokeWidth="7" />
+    <circle cx="66" cy="58" r="14" fill="none" stroke="currentColor" strokeWidth="7" />
+    <line x1="48" y1="58" x2="52" y2="58" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+    <path d="M18 82 Q12 100 50 100 Q88 100 82 82 Q66 74 50 74 Q34 74 18 82 Z" />
+  </svg>
+);
 import { Button } from '../components/ui/button';
 import { Label } from '../components/ui/label';
 import { useGameState } from '../hooks/useGameState';
@@ -123,7 +134,7 @@ export const Setup: React.FC = () => {
           <div className="space-y-4 opacity-80">
             <div className="flex items-center justify-between">
               <Label className="text-lg md:text-xl font-bold flex items-center gap-3 text-white/70">
-                <UserSearch className="w-5 h-5 md:w-6 md:h-6 text-role-impostor" /> Impostores
+                <IncognitoIcon className="w-5 h-5 md:w-6 md:h-6 text-role-impostor" /> Impostores
               </Label>
               <div className="flex items-center gap-4">
                 <Button 

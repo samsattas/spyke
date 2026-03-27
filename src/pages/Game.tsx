@@ -16,6 +16,7 @@ export const Game: React.FC = () => {
   const { gameState, eliminatePlayer, checkImpostorGuess } = useGameState();
   
   const [isVotingMode, setIsVotingMode] = useState(false);
+  const [confirmEliminate, setConfirmEliminate] = useState<Player | null>(null);
   const [eliminationReveal, setEliminationReveal] = useState<{ player: Player; role: string } | null>(null);
   const [impostorGuessModal, setImpostorGuessModal] = useState<{ playerId: string } | null>(null);
   const [impostorGuess, setImpostorGuess] = useState('');
@@ -143,7 +144,7 @@ export const Game: React.FC = () => {
                   size="sm"
                   variant="destructive"
                   className="rounded-full px-4 font-black text-[10px] uppercase"
-                  onClick={() => handleEliminate(p.id)}
+                  onClick={() => setConfirmEliminate(p)}
                 >
                   Sacar
                 </Button>
@@ -203,6 +204,40 @@ export const Game: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Confirm Elimination Modal */}
+      <Dialog open={!!confirmEliminate} onOpenChange={(open) => !open && setConfirmEliminate(null)}>
+        <DialogContent className="bg-card border-white/10 text-white max-w-sm w-[90vw] rounded-3xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-black text-white text-center uppercase">¿Eliminar jugador?</DialogTitle>
+          </DialogHeader>
+          <div className="py-4 text-center">
+            <p className="text-white/60 text-sm">
+              ¿Estás seguro de que quieres sacar a{' '}
+              <span className="text-white font-black uppercase">{confirmEliminate?.name}</span>?
+            </p>
+          </div>
+          <DialogFooter className="flex-row gap-3">
+            <Button
+              variant="outline"
+              className="flex-1 border-white/10 text-white/60 font-black py-6 rounded-xl"
+              onClick={() => setConfirmEliminate(null)}
+            >
+              CANCELAR
+            </Button>
+            <Button
+              variant="destructive"
+              className="flex-1 font-black py-6 rounded-xl"
+              onClick={() => {
+                handleEliminate(confirmEliminate!.id);
+                setConfirmEliminate(null);
+              }}
+            >
+              SACAR
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Impostor Guess Modal */}
       <Dialog open={!!impostorGuessModal} onOpenChange={() => {}}>
