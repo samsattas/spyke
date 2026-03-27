@@ -10,7 +10,7 @@ import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/spyke">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/setup" element={<Setup />} />
